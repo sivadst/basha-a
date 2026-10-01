@@ -1,26 +1,225 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap');
 @import "tailwindcss";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
+/* ═══════════════════════════════════════════════════════
+   BASHA-A Design System — Boo-inspired, personality-driven
+   ═══════════════════════════════════════════════════════ */
 
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  --color-surface: var(--surface);
+  --color-surface-elevated: var(--surface-elevated);
+  --color-border-subtle: var(--border-subtle);
+  --color-text-primary: var(--text-primary);
+  --color-text-secondary: var(--text-secondary);
+  --color-text-muted: var(--text-muted);
+
+  /* Brand accent palette */
+  --color-lavender: #a78bfa;
+  --color-lavender-light: #c4b5fd;
+  --color-lavender-dark: #7c3aed;
+  --color-coral: #f9a8d4;
+  --color-coral-deep: #ec4899;
+  --color-violet: #8b5cf6;
+  --color-violet-electric: #7c3aed;
+  --color-mint: #6ee7b7;
+  --color-amber: #fbbf24;
+  --color-sky: #7dd3fc;
+
+  /* Semantic */
+  --color-like: #ec4899;
+  --color-superlike: #7c3aed;
+  --color-pass: #94a3b8;
+  --color-match: #6ee7b7;
+
+  --font-sans: 'Inter', system-ui, -apple-system, sans-serif;
+}
+
+:root {
+  --background: #faf9fb;
+  --foreground: #1a1625;
+  --surface: #ffffff;
+  --surface-elevated: #ffffff;
+  --border-subtle: rgba(139, 92, 246, 0.08);
+  --text-primary: #1a1625;
+  --text-secondary: #64748b;
+  --text-muted: #94a3b8;
+  --glass-bg: rgba(255, 255, 255, 0.72);
+  --glass-border: rgba(139, 92, 246, 0.12);
+  --card-shadow: 0 4px 32px rgba(139, 92, 246, 0.08), 0 1px 3px rgba(0,0,0,0.04);
+  --card-shadow-lg: 0 8px 48px rgba(139, 92, 246, 0.12), 0 2px 8px rgba(0,0,0,0.06);
 }
 
 @media (prefers-color-scheme: dark) {
   :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+    --background: #0f0d15;
+    --foreground: #f1f0f3;
+    --surface: #1a1725;
+    --surface-elevated: #221f2e;
+    --border-subtle: rgba(139, 92, 246, 0.15);
+    --text-primary: #f1f0f3;
+    --text-secondary: #a1a1aa;
+    --text-muted: #71717a;
+    --glass-bg: rgba(15, 13, 21, 0.78);
+    --glass-border: rgba(139, 92, 246, 0.2);
+    --card-shadow: 0 4px 32px rgba(0, 0, 0, 0.3), 0 1px 3px rgba(0,0,0,0.2);
+    --card-shadow-lg: 0 8px 48px rgba(0, 0, 0, 0.4), 0 2px 8px rgba(0,0,0,0.3);
   }
+}
+
+/* ── Base resets ─────────────────────────────────────── */
+* {
+  -webkit-tap-highlight-color: transparent;
+}
+
+html {
+  scroll-behavior: smooth;
 }
 
 body {
   background: var(--background);
   color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: 'Inter', system-ui, -apple-system, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  overflow-x: hidden;
+}
+
+/* ── Glassmorphism utility ──────────────────────────── */
+.glass {
+  background: var(--glass-bg);
+  backdrop-filter: blur(20px) saturate(1.8);
+  -webkit-backdrop-filter: blur(20px) saturate(1.8);
+  border: 1px solid var(--glass-border);
+}
+
+.glass-heavy {
+  background: var(--glass-bg);
+  backdrop-filter: blur(40px) saturate(2);
+  -webkit-backdrop-filter: blur(40px) saturate(2);
+  border: 1px solid var(--glass-border);
+}
+
+/* ── Gradient utilities ─────────────────────────────── */
+.gradient-brand {
+  background: linear-gradient(135deg, #a78bfa 0%, #ec4899 50%, #f9a8d4 100%);
+}
+
+.gradient-brand-subtle {
+  background: linear-gradient(135deg, rgba(167, 139, 250, 0.1) 0%, rgba(236, 72, 153, 0.08) 50%, rgba(249, 168, 212, 0.06) 100%);
+}
+
+.gradient-superlike {
+  background: linear-gradient(135deg, #7c3aed 0%, #a78bfa 50%, #c4b5fd 100%);
+}
+
+.gradient-like {
+  background: linear-gradient(135deg, #ec4899 0%, #f9a8d4 100%);
+}
+
+.gradient-text {
+  background: linear-gradient(135deg, #a78bfa, #ec4899);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* ── Card styles ────────────────────────────────────── */
+.card-elevated {
+  background: var(--surface);
+  box-shadow: var(--card-shadow);
+  border: 1px solid var(--border-subtle);
+}
+
+.card-elevated-lg {
+  background: var(--surface);
+  box-shadow: var(--card-shadow-lg);
+  border: 1px solid var(--border-subtle);
+}
+
+/* ── Personality badge glow ─────────────────────────── */
+.badge-glow {
+  box-shadow: 0 0 20px rgba(167, 139, 250, 0.3), 0 0 4px rgba(167, 139, 250, 0.2);
+}
+
+/* ── Smooth scrollbar ───────────────────────────────── */
+::-webkit-scrollbar {
+  width: 4px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: rgba(139, 92, 246, 0.2);
+  border-radius: 100px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(139, 92, 246, 0.4);
+}
+
+/* ── Chat bubble styles ─────────────────────────────── */
+.bubble-sent {
+  background: linear-gradient(135deg, #a78bfa, #8b5cf6);
+  color: white;
+  border-radius: 20px 20px 6px 20px;
+}
+
+.bubble-received {
+  background: var(--surface-elevated);
+  color: var(--text-primary);
+  border-radius: 20px 20px 20px 6px;
+  border: 1px solid var(--border-subtle);
+}
+
+/* ── Pill tag ───────────────────────────────────────── */
+.pill-tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  padding: 6px 14px;
+  border-radius: 100px;
+  font-size: 0.8125rem;
+  font-weight: 500;
+  background: var(--surface-elevated);
+  border: 1px solid var(--border-subtle);
+  color: var(--text-secondary);
+  transition: all 0.2s ease;
+}
+
+.pill-tag:hover {
+  border-color: rgba(167, 139, 250, 0.3);
+  color: var(--text-primary);
+  background: rgba(167, 139, 250, 0.08);
+}
+
+/* ── Animations ─────────────────────────────────────── */
+@keyframes shimmer {
+  0% { transform: translateX(-100%); }
+  100% { transform: translateX(100%); }
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0px); }
+  50% { transform: translateY(-8px); }
+}
+
+@keyframes pulse-soft {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.7; }
+}
+
+.animate-shimmer {
+  animation: shimmer 2s ease-in-out infinite;
+}
+
+.animate-float {
+  animation: float 3s ease-in-out infinite;
+}
+
+.animate-pulse-soft {
+  animation: pulse-soft 2s ease-in-out infinite;
 }
